@@ -1,0 +1,54 @@
+<header class="app-header">
+<h1>{{name}} {{surname}}</h1>
+<ul>
+  <li>Email: {{email}}</li>
+  <li>Adres: {{address.street}} {{address.flatNo}} {{address.houseNo}} </li>
+  <li>{{address.postalCode}}{{address.city}}</li>
+</ul>
+<div>
+  <button (click)="changeEditMode()">Zmien dane</button>
+</div>
+</header>
+
+<section class="add-item">
+  <form (submit)="addBook(task.value)">
+    <div>
+      <label for="bookField">Książka: </label>
+      <input type="text" #task id="bookField">
+    </div>
+  </form>
+
+  <button (click)="addBook(task.value)">Dodaj do zbioru</button>
+</section>
+
+
+
+<ul class="items">
+  <li *ngFor="let task of books; let i = index">
+    {{i + 1}}. {{task}}
+    <button (click)="deleteBook(task)">Usuń ze zbioru</button>
+
+  </li>
+</ul>
+
+
+<div *ngIf=editMode class="book-edit">
+  <h1>Edytuj :</h1>
+  <form>
+    <div>
+      <label>Imię: </label>
+      <input type="text" [(ngModel)]="name" name="name">
+    </div>
+
+    <div>
+      <label>Nazwisko </label>
+      <input type="number" [(ngModel)]="surname" name="surname">
+    </div>
+
+    <div>
+      <label>Email: </label>
+      <input type="text" [(ngModel)]="email" name="email">
+    </div>
+
+  </form>
+</div>
